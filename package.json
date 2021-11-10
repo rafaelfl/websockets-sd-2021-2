@@ -6,7 +6,7 @@
   "author": "Rafael Fernandes Lopes <rafael.fernandes@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
