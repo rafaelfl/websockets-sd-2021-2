@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de websockets</title>
+</head>
+<body>
+    <h1>Teste de websockets</h1>
+    <div>
+        <input type="text" id="mensagem" placeholder="Digite uma mensagem">
+        <input type="button" id="send" value="Enviar" onclick="enviarMsg()">
+    </div>
+    <div id="chat"></div>
+</body>
+    <script>
+        const HOST = location.origin.replace(/^http/, 'ws')
+        var socket = new WebSocket(HOST);
+
+        socket.onopen = function() {
+            console.log("Conectado ao servidor websocket!");
+        }
+
+        socket.onmessage = function({ data }) {
+            var msg = data.toString();
+
+            // console.log(msg);
+            var chat = document.getElementById("chat");
+
+            chat.innerHTML += msg.toString() + "<br>";
+        }
+
+        function enviarMsg() {
+            // console.log("Enviando mensagem...");
+            // socket.send("Olá servidor!");
+
+            var msg = document.getElementById("mensagem").value;
+            document.getElementById("mensagem").value = "";
+
+            socket.send(msg.toString());
+        }
+    </script>
+</html>
